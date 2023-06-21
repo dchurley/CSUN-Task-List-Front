@@ -29,8 +29,6 @@ const SignInSignUp = () => {
     password: "",
   };
 
-  const [login, setLogin] = useState(defaultLogin);
-
   const defaultsignUp = {
     first_name: "",
     last_name: "",
@@ -38,6 +36,7 @@ const SignInSignUp = () => {
     password: "",
   };
 
+  const [login, setLogin] = useState(defaultLogin);
   const [signUp, setSignUp] = useState(defaultsignUp);
 
   const customOnChangeLogin = (key, e) => {
@@ -49,12 +48,18 @@ const SignInSignUp = () => {
 
   const customOnChangeSignUp = (key, e) => {
     setSignUp({
-      ...login,
+      ...signUp,
       [key]: e.target.value,
     });
   };
 
-  console.log(signUp);
+  const clearLogin = () => {
+    setLogin(defaultLogin);
+  };
+
+  const clearSignUp = () => {
+    setSignUp(defaultsignUp);
+  };
 
   return (
     <div className="sign_in_sign_up_container">
@@ -84,10 +89,8 @@ const SignInSignUp = () => {
           onChange={(e) => customOnChangeSignUp("password", e)}
           value={signUp.password}
         />
-        <div>
-          <button>Sign Up</button>
-          <button>Clear</button>
-        </div>
+        <button>Sign Up</button>
+        <button onClick={clearSignUp}>Clear</button>
       </div>
       <div className="sign_in_sign_up_container_column">
         <h1>Login</h1>
@@ -104,6 +107,7 @@ const SignInSignUp = () => {
           value={login.password}
         />
         <button>Sign In</button>
+        <button onClick={clearLogin}>Clear</button>
       </div>
     </div>
   );
