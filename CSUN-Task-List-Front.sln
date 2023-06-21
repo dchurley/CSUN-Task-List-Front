@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "csun-task-list-front", "csun-task-list-front.esproj", "{D500A65C-3E98-45A0-9E72-43B500D72830}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D500A65C-3E98-45A0-9E72-43B500D72830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D500A65C-3E98-45A0-9E72-43B500D72830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D500A65C-3E98-45A0-9E72-43B500D72830}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D500A65C-3E98-45A0-9E72-43B500D72830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D500A65C-3E98-45A0-9E72-43B500D72830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D500A65C-3E98-45A0-9E72-43B500D72830}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64D61768-CF29-4C0F-94DE-71257571D312}
+	EndGlobalSection
+EndGlobal
