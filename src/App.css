@@ -42,10 +42,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 5px;
+  border: 1px solid coral;
 }
 
 .user_dashboard_add_category {
-  margin-top: 10px;
   border: 1px solid green;
   padding: 10px;
   display: flex;
@@ -54,10 +55,56 @@
 }
 
 .user_dashboard_add_task {
-  margin-top: 10px;
   border: 1px solid orange;
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.user_dashboard_tasks_container {
+  padding: 5px;
+  border: 1px solid brown;
+  margin-top: 10px;
+}
+
+.user_dashboard_tasks_categories {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user_dashboard_tasks_view {
+  padding: 5px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.multiline {
+  white-space: pre-wrap;
+}
+
+.user_dashboard_tasks_view_task {
+  padding: 5px 20px;
+  border: 1px solid orange;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user_dashboard_tasks_view_task_left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user_dashboard_tasks_view_task_completed {
+  padding: 5px 20px;
+  border: 1px solid lightblue;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-decoration: line-through;
 }

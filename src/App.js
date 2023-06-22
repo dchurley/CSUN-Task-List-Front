@@ -343,11 +343,44 @@ const UserDashboard = ({ setIsLoggedIn }) => {
       .then((response) => response.json())
       .then((data) => {
         setTasks([...tasks, data.addedTask]);
+        setTaskInfoToAdd(defaultTaskInfoToAdd);
       });
   };
 
-  // showing the tasks
-  console.log(tasks);
+  const [selectedTab, setSelectedTab] = useState("");
+
+  const customeFilter = () => {
+    return tasks.filter(
+      (task) => task.category === selectedTab && task.completed !== true
+    );
+  };
+
+  const customeFilterForCompleted = () => {
+    return tasks.filter(
+      (task) => task.category === selectedTab && task.completed !== false
+    );
+  };
+
+  const completeTask = (id) => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+    if (!user_id || !access_token) return;
+
+    fetch("http://localhost:4000/complete-user-task", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+        id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        getUserTasks();
+      });
+  };
 
   return (
     <div className="user_dashboard_container">
@@ -365,13 +398,6 @@ const UserDashboard = ({ setIsLoggedIn }) => {
             onChange={(e) => setCategoryToAdd(e.target.value)}
           />
           <button onClick={addCategory}>Add Category</button>
-          {categories.map((category) => {
-            return (
-              <div key={category.id}>
-                <p>{category.category}</p>
-              </div>
-            );
-          })}
         </div>
         <div className="user_dashboard_add_task">
           <h2>Add Task</h2>
@@ -414,6 +440,57 @@ const UserDashboard = ({ setIsLoggedIn }) => {
           <button onClick={addTask}>Add Task</button>
         </div>
       </div>
+      {!categories.length ? null : (
+        <div className="user_dashboard_tasks_container">
+          <div className="user_dashboard_tasks_categories">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                value={category.category}
+                onClick={(e) => setSelectedTab(e.target.value)}
+              >
+                {category.category}
+              </button>
+            ))}
+          </div>
+          {!customeFilter().length ? null : (
+            <div className="user_dashboard_tasks_view">
+              {customeFilter().map((task) => (
+                <div key={task.id} className="user_dashboard_tasks_view_task">
+                  <div className="user_dashboard_tasks_view_task_left">
+                    <h3>{task.title}</h3>
+                    <p className="multiline">{task.description}</p>
+                    <p>{new Date(task.date).toLocaleDateString()}</p>
+                  </div>
+                  <div className="user_dashboard_tasks_view_task_right">
+                    <button
+                      value={task.id}
+                      onClick={(e) => completeTask(e.target.value)}
+                    >
+                      Complete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {!customeFilterForCompleted().length ? null : (
+            <div className="user_dashboard_tasks_view">
+              {customeFilterForCompleted().map((task) => (
+                <div
+                  key={task.id}
+                  className="user_dashboard_tasks_view_task_completed"
+                >
+                  <h3>{task.title}</h3>
+                  <p className="multiline">{task.description}</p>
+                  <p>{new Date(task.date).toLocaleDateString()}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
