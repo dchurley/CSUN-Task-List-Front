@@ -1,5 +1,5 @@
 .App {
-  max-width: 800px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -24,4 +24,40 @@
   flex-direction: column;
   gap: 10px;
   flex: 0.3;
+}
+
+.user_dashboard_container {
+  margin-top: 10px;
+  border: 1px solid purple;
+  padding: 10px;
+}
+
+.user_dashboard_navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user_dashboard_tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user_dashboard_add_category {
+  margin-top: 10px;
+  border: 1px solid green;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user_dashboard_add_task {
+  margin-top: 10px;
+  border: 1px solid orange;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }

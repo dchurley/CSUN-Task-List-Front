@@ -225,10 +225,195 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     setIsLoggedIn(false);
   };
 
+  const defaultTaskInfoToAdd = {
+    title: "",
+    description: ``,
+    date: "",
+    category: "",
+  };
+
+  const [categoryToAdd, setCategoryToAdd] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [taskInfoToAdd, setTaskInfoToAdd] = useState(defaultTaskInfoToAdd);
+  const [tasks, setTasks] = useState([]);
+
+  const customOnChangeForAddTask = (key, e) => {
+    setTaskInfoToAdd({
+      ...taskInfoToAdd,
+      [key]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    getUserCategories();
+    getUserTasks();
+  }, []);
+
+  const getUserCategories = () => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+
+    if (!user_id || !access_token) return;
+
+    fetch("http://localhost:4000/get-user-categories", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data.categories);
+      });
+  };
+
+  const getUserTasks = () => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+
+    if (!user_id || !access_token) return;
+
+    fetch("http://localhost:4000/get-user-tasks", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setTasks(data.tasks);
+      });
+  };
+
+  const addCategory = () => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+    if (!user_id || !access_token) return;
+
+    if (!categoryToAdd) return;
+
+    let fixedCategoryToAdd = categoryToAdd.trim();
+    fixedCategoryToAdd =
+      fixedCategoryToAdd.charAt(0).toUpperCase() + fixedCategoryToAdd.slice(1);
+
+    fetch("http://localhost:4000/add-user-category", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+        category: fixedCategoryToAdd,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories([...categories, data.addedCategory]);
+        setCategoryToAdd("");
+      });
+  };
+
+  const addTask = () => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+    if (!user_id || !access_token) return;
+
+    let fixedTitle = taskInfoToAdd.title.trim();
+    let description = taskInfoToAdd.description;
+    let date = taskInfoToAdd.date;
+    let category = taskInfoToAdd.category;
+
+    if (!fixedTitle || !category) return;
+
+    fetch("http://localhost:4000/add-user-task", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+        title: fixedTitle,
+        description,
+        date,
+        category,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setTasks([...tasks, data.addedTask]);
+      });
+  };
+
+  // showing the tasks
+  console.log(tasks);
+
   return (
-    <div>
-      <button onClick={log_out_func}>Log Out</button>
-      <h1>User Dashboard</h1>
+    <div className="user_dashboard_container">
+      <div className="user_dashboard_navbar">
+        <h1>User Dashboard</h1>
+        <button onClick={log_out_func}>Log Out</button>
+      </div>
+      <div className="user_dashboard_tools">
+        <div className="user_dashboard_add_category">
+          <h2>Add Category</h2>
+          <input
+            type="text"
+            placeholder="Category to add..."
+            value={categoryToAdd}
+            onChange={(e) => setCategoryToAdd(e.target.value)}
+          />
+          <button onClick={addCategory}>Add Category</button>
+          {categories.map((category) => {
+            return (
+              <div key={category.id}>
+                <p>{category.category}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="user_dashboard_add_task">
+          <h2>Add Task</h2>
+          <input
+            type="text"
+            placeholder="Title... (required)"
+            value={taskInfoToAdd.title}
+            onChange={(e) => customOnChangeForAddTask("title", e)}
+          />
+          <textarea
+            id="description"
+            name="description"
+            rows="5"
+            cols="20"
+            placeholder="Desctiption..."
+            value={taskInfoToAdd.description}
+            onChange={(e) => customOnChangeForAddTask("description", e)}
+          ></textarea>
+          <input
+            type="date"
+            value={taskInfoToAdd.date}
+            onChange={(e) => customOnChangeForAddTask("date", e)}
+          />
+          <select
+            name="categoryToAdd"
+            id="categoryToAdd"
+            value={taskInfoToAdd.category}
+            onChange={(e) => customOnChangeForAddTask("category", e)}
+          >
+            <option value="">Select Category *</option>
+
+            {categories.map((category) => {
+              return (
+                <option value={category.category} key={category.id}>
+                  {category.category}
+                </option>
+              );
+            })}
+          </select>
+          <button onClick={addTask}>Add Task</button>
+        </div>
+      </div>
     </div>
   );
 };
