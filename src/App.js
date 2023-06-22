@@ -38,8 +38,12 @@ const Navbar = () => {
   return (
     <div className="navbar_container">
       <h1>Navbar</h1>
+      <h2>BELOW TO BE DELETED LATER</h2>
       <h2>eduard.hovhannisyan.461@my.csun.edu</h2>
+      <h2>sabrina.motto.422@my.csun.edu</h2>
       <h2>12345678</h2>
+      <p>http://localhost:4000/get-all</p>
+      <p>http://localhost:4000/truncate-all</p>
     </div>
   );
 };
@@ -460,7 +464,9 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                   <div className="user_dashboard_tasks_view_task_left">
                     <h3>{task.title}</h3>
                     <p className="multiline">{task.description}</p>
-                    <p>{new Date(task.date).toLocaleDateString()}</p>
+                    {task.date && (
+                      <p>{new Date(task.date).toLocaleDateString()}</p>
+                    )}
                   </div>
                   <div className="user_dashboard_tasks_view_task_right">
                     <button
@@ -484,7 +490,9 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                 >
                   <h3>{task.title}</h3>
                   <p className="multiline">{task.description}</p>
-                  <p>{new Date(task.date).toLocaleDateString()}</p>
+                  {task.date && (
+                    <p>{new Date(task.date).toLocaleDateString()}</p>
+                  )}
                 </div>
               ))}
             </div>
