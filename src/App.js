@@ -354,13 +354,15 @@ const UserDashboard = ({ setIsLoggedIn }) => {
   const [selectedTab, setSelectedTab] = useState("");
 
   const customeFilter = () => {
-    return tasks.filter(
+    let sortedTasks = tasks.sort((a, b) => a.id - b.id);
+    return sortedTasks.filter(
       (task) => task.category === selectedTab && task.completed !== true
     );
   };
 
   const customeFilterForCompleted = () => {
-    return tasks.filter(
+    let sortedTasks = tasks.sort((a, b) => a.id - b.id);
+    return sortedTasks.filter(
       (task) => task.category === selectedTab && task.completed !== false
     );
   };
@@ -372,6 +374,48 @@ const UserDashboard = ({ setIsLoggedIn }) => {
 
     fetch("http://localhost:4000/complete-user-task", {
       method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+        id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        getUserTasks();
+      });
+  };
+
+  const unCompleteTask = (id) => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+    if (!user_id || !access_token) return;
+
+    fetch("http://localhost:4000/uncomplete-user-task", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+        id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        getUserTasks();
+      });
+  };
+
+  const deleteTask = (id) => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+    if (!user_id || !access_token) return;
+
+    fetch("http://localhost:4000/delete-user-task", {
+      method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         user_id,
@@ -475,6 +519,12 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                     >
                       Complete
                     </button>
+                    <button
+                      value={task.id}
+                      onClick={(e) => deleteTask(e.target.value)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               ))}
@@ -486,13 +536,29 @@ const UserDashboard = ({ setIsLoggedIn }) => {
               {customeFilterForCompleted().map((task) => (
                 <div
                   key={task.id}
-                  className="user_dashboard_tasks_view_task_completed"
+                  className="user_dashboard_tasks_view_task_completed_container"
                 >
-                  <h3>{task.title}</h3>
-                  <p className="multiline">{task.description}</p>
-                  {task.date && (
-                    <p>{new Date(task.date).toLocaleDateString()}</p>
-                  )}
+                  <div className="user_dashboard_tasks_view_task_completed">
+                    <h3>{task.title}</h3>
+                    <p className="multiline">{task.description}</p>
+                    {task.date && (
+                      <p>{new Date(task.date).toLocaleDateString()}</p>
+                    )}
+                  </div>
+                  <div className="user_dashboard_tasks_view_task_completed_buttons">
+                    <button
+                      value={task.id}
+                      onClick={(e) => unCompleteTask(e.target.value)}
+                    >
+                      Uncomplete
+                    </button>
+                    <button
+                      value={task.id}
+                      onClick={(e) => deleteTask(e.target.value)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

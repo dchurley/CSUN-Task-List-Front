@@ -100,11 +100,27 @@
   gap: 5px;
 }
 
-.user_dashboard_tasks_view_task_completed {
+.user_dashboard_tasks_view_task_right {
+  display: flex;
+  gap: 10px;
+}
+
+.user_dashboard_tasks_view_task_completed_container {
   padding: 5px 20px;
   border: 1px solid lightblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user_dashboard_tasks_view_task_completed {
   display: flex;
   flex-direction: column;
   gap: 5px;
   text-decoration: line-through;
+}
+
+.user_dashboard_tasks_view_task_completed_buttons {
+  display: flex;
+  gap: 10px;
 }
