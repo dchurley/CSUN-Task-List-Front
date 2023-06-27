@@ -1,0 +1,2 @@
+C:\Users\Drew\source\repos\CSUN-Task-List-Front\obj\Debug\csun-task-list-front.esproj.SuggestedBindingRedirects.cache
+C:\Users\Drew\source\repos\CSUN-Task-List-Front\obj\Debug\csun-task-list-front.esproj.CoreCompileInputs.cache

@@ -1,3 +1,16 @@
+* {
+    border-radius: 3px;
+    font-family: 'Reem Kufi', sans-serif;
+}
+
+body {
+    background-color: #212121;
+}
+
+div {
+    border-radius: 10px;
+}
+
 .App {
   max-width: 900px;
   margin-left: auto;
@@ -6,17 +19,19 @@
 
 .navbar_container {
   padding: 10px 20px;
-  border: 1px solid red;
+  border: 3px solid red;
+  background-color: darkgray;
   text-align: center;
 }
 
 .sign_in_sign_up_container {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border: 1px solid blue;
-  padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    background-color: darkgrey;
+    align-items: center;
+    border: 3px solid blue;
+    padding: 10px;
 }
 
 .sign_in_sign_up_container_column {
@@ -27,45 +42,51 @@
 }
 
 .user_dashboard_container {
-  margin-top: 10px;
-  border: 1px solid purple;
-  padding: 10px;
+    margin-top: 10px;
+    border: 3px solid purple;
+    padding: 10px;
+    background-color: darkgrey;
 }
 
 .user_dashboard_navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: darkgrey;
 }
 
 .user_dashboard_tools {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 5px;
-  border: 1px solid coral;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    border: 3px solid coral;
+    background-color: #212121;
 }
 
 .user_dashboard_add_category {
-  border: 1px solid green;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+    border: 3px solid green;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: darkgrey;
+    gap: 5px;
 }
 
 .user_dashboard_add_task {
-  border: 1px solid orange;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+    border: 3px solid orange;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: darkgrey;
+    gap: 5px;
 }
 
 .user_dashboard_tasks_container {
-  padding: 5px;
-  border: 1px solid brown;
-  margin-top: 10px;
+    padding: 5px;
+    border: 3px solid brown;
+    background-color: #212121;
+    margin-top: 10px;
 }
 
 .user_dashboard_tasks_categories {
@@ -80,6 +101,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
 }
 
 .multiline {
@@ -87,11 +109,12 @@
 }
 
 .user_dashboard_tasks_view_task {
-  padding: 5px 20px;
-  border: 1px solid orange;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    padding: 5px 20px;
+    border: 3px solid orange;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: darkgrey;
 }
 
 .user_dashboard_tasks_view_task_left {
@@ -106,11 +129,12 @@
 }
 
 .user_dashboard_tasks_view_task_completed_container {
-  padding: 5px 20px;
-  border: 1px solid lightblue;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    padding: 5px 20px;
+    border: 3px solid lightblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #454545;
 }
 
 .user_dashboard_tasks_view_task_completed {
