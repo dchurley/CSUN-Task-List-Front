@@ -43,7 +43,7 @@ const Navbar = () => {
       <h2>sabrina.motto.422@my.csun.edu</h2>
       <h2>12345678</h2>
       <p>http://localhost:4000/get-all</p>
-      <p>http://localhost:4000/truncate-all</p>
+      <p>http://localhost:4000/truncate-all - DO NOT GO TO THIS LINK</p>
     </div>
   );
 };

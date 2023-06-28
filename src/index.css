@@ -6,13 +6,41 @@
 
 input {
   padding: 5px;
+  background-color: #6e6e6e;
+  color: white;
+}
+input::placeholder {
+  color: white;
+  opacity: 1;
 }
 
 textarea {
+  background-color: #6e6e6e;
+  color: white;
   padding: 5px;
 }
+
+textarea::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+select {
+  background-color: #6e6e6e;
+  color: white;
+  padding: 5px;
+}
+
+select::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+
 
 button {
   padding: 5px;
   cursor: pointer;
+  background-color: #212121;
+  color: white;
 }
