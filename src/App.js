@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
       {isLoggedIn ? (
         <UserDashboard setIsLoggedIn={setIsLoggedIn} />
       ) : (
@@ -49,15 +49,27 @@ function App() {
 
 export default App;
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn }) => {
   const first_name = sessionStorage.getItem("first_name");
   const last_name = sessionStorage.getItem("last_name");
   const date_registered = sessionStorage.getItem("date_registered");
 
   return (
     <div className="navbar_container">
-      <h1>Welcome, {first_name + " " + last_name}</h1>
-      <h3>Member since {new Date(date_registered).toLocaleDateString()}</h3>
+      {isLoggedIn ? (
+        <>
+          <div className="navbar_container_logo">
+            <img src="CSUN.png" alt="logo" />
+            <h1>Welcome, {first_name + " " + last_name}</h1>
+          </div>
+          <h3>Member since {new Date(date_registered).toLocaleDateString()}</h3>
+        </>
+      ) : (
+        <div className="navbar_container_logo">
+          <img src="CSUN.png" alt="logo" />
+          <h1>CSUN Task-Force</h1>
+        </div>
+      )}
     </div>
   );
 };

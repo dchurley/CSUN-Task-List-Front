@@ -27,11 +27,13 @@ div {
 h1 {
   margin-left: auto;
   margin-right: auto;
+  color: #212121;
 }
 
 h2 {
   margin-left: auto;
   margin-right: auto;
+  color: #212121;
 }
 
 .navbar_container {
@@ -44,8 +46,15 @@ h2 {
   /* text-align: center; */
 }
 
-.navbar_container > h1 {
-  margin: 0;
+.navbar_container_logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar_container_logo > img {
+  width: 50px;
+  height: 50px;
 }
 
 .sign_in_sign_up_container {
