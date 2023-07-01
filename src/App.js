@@ -1,6 +1,21 @@
 import "./App.css";
 import React from "react";
 import { useState, useEffect } from "react";
+import {
+  FaUserPlus,
+  FaSignInAlt,
+  FaPlus,
+  FaTrashAlt,
+  FaCheck,
+  FaUndo,
+} from "react-icons/fa";
+/*
+eduard.hovhannisyan.461@my.csun.edu
+12345678
+http://localhost:4000/get-all
+http://localhost:4000/truncate-all
+
+*/
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,15 +50,14 @@ function App() {
 export default App;
 
 const Navbar = () => {
+  const first_name = sessionStorage.getItem("first_name");
+  const last_name = sessionStorage.getItem("last_name");
+  const date_registered = sessionStorage.getItem("date_registered");
+
   return (
     <div className="navbar_container">
-      <h1>Navbar</h1>
-      <h2>BELOW TO BE DELETED LATER</h2>
-      <h2>eduard.hovhannisyan.461@my.csun.edu</h2>
-      <h2>sabrina.motto.422@my.csun.edu</h2>
-      <h2>12345678</h2>
-      <p>http://localhost:4000/get-all</p>
-      <p>http://localhost:4000/truncate-all - DO NOT GO TO THIS LINK</p>
+      <h1>Welcome, {first_name + " " + last_name}</h1>
+      <h3>Member since {new Date(date_registered).toLocaleDateString()}</h3>
     </div>
   );
 };
@@ -161,6 +175,9 @@ const SignInSignUp = ({ setIsLoggedIn }) => {
         if (data.user_id && data.access_token) {
           sessionStorage.setItem("user_id", data.user_id);
           sessionStorage.setItem("access_token", data.access_token);
+          sessionStorage.setItem("first_name", data.first_name);
+          sessionStorage.setItem("last_name", data.last_name);
+          sessionStorage.setItem("date_registered", data.date_registered);
           setIsLoggedIn(true);
         } else {
           setLogInMessage(data);
@@ -196,7 +213,10 @@ const SignInSignUp = ({ setIsLoggedIn }) => {
           onChange={(e) => customOnChangeSignUp("password", e)}
           value={signUp.password}
         />
-        <button onClick={sign_up_func}>Sign Up</button>
+        <button onClick={sign_up_func} className="container_with_text_icon">
+          Sign Up
+          <FaUserPlus />
+        </button>
         <button onClick={clearSignUp}>Clear</button>
         {signUpMessage && <p>{signUpMessage}</p>}
       </div>
@@ -214,7 +234,9 @@ const SignInSignUp = ({ setIsLoggedIn }) => {
           onChange={(e) => customOnChangeLogin("password", e)}
           value={login.password}
         />
-        <button onClick={log_in_func}>Sign In</button>
+        <button onClick={log_in_func} className="container_with_text_icon">
+          Sign In <FaSignInAlt />
+        </button>
         <button onClick={clearLogin}>Clear</button>
         {logInMessage && <p>{logInMessage}</p>}
       </div>
@@ -404,7 +426,6 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         getUserTasks();
       });
   };
@@ -425,7 +446,6 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         getUserTasks();
       });
   };
@@ -433,7 +453,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
   return (
     <div className="user_dashboard_container">
       <div className="user_dashboard_navbar">
-        <h1>User Dashboard</h1>
+        <h2>Dashboard</h2>
         <button onClick={log_out_func}>Log Out</button>
       </div>
       <div className="user_dashboard_tools">
@@ -445,7 +465,9 @@ const UserDashboard = ({ setIsLoggedIn }) => {
             value={categoryToAdd}
             onChange={(e) => setCategoryToAdd(e.target.value)}
           />
-          <button onClick={addCategory}>Add Category</button>
+          <button onClick={addCategory} className="container_with_text_icon">
+            Add Category <FaPlus />
+          </button>
         </div>
         <div className="user_dashboard_add_task">
           <h2>Add Task</h2>
@@ -485,7 +507,9 @@ const UserDashboard = ({ setIsLoggedIn }) => {
               );
             })}
           </select>
-          <button onClick={addTask}>Add Task</button>
+          <button onClick={addTask} className="container_with_text_icon">
+            Add Task <FaPlus />
+          </button>
         </div>
       </div>
       {!categories.length ? null : (
@@ -496,6 +520,11 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                 key={category.id}
                 value={category.category}
                 onClick={(e) => setSelectedTab(e.target.value)}
+                className={
+                  selectedTab === category.category
+                    ? "task_category_selected"
+                    : "task_category_general_button"
+                }
               >
                 {category.category}
               </button>
@@ -516,14 +545,16 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                     <button
                       value={task.id}
                       onClick={(e) => completeTask(e.target.value)}
+                      className="container_with_text_icon"
                     >
-                      Complete
+                      <FaCheck />
                     </button>
                     <button
                       value={task.id}
                       onClick={(e) => deleteTask(e.target.value)}
+                      className="container_with_text_icon"
                     >
-                      Delete
+                      <FaTrashAlt />
                     </button>
                   </div>
                 </div>
@@ -549,14 +580,16 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                     <button
                       value={task.id}
                       onClick={(e) => unCompleteTask(e.target.value)}
+                      className="container_with_text_icon"
                     >
-                      Uncomplete
+                      <FaUndo />
                     </button>
                     <button
                       value={task.id}
                       onClick={(e) => deleteTask(e.target.value)}
+                      className="container_with_text_icon"
                     >
-                      Delete
+                      <FaTrashAlt />
                     </button>
                   </div>
                 </div>

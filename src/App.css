@@ -17,11 +17,35 @@ div {
   margin-right: auto;
 }
 
+.container_with_text_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+h1 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .navbar_container {
-  padding: 10px 20px;
+  padding: 10px;
   border: 3px solid white;
   background-color: darkgray;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* text-align: center; */
+}
+
+.navbar_container > h1 {
+  margin: 0;
 }
 
 .sign_in_sign_up_container {
@@ -53,6 +77,11 @@ div {
   align-items: center;
   justify-content: space-between;
   background-color: darkgrey;
+  margin-bottom: 15px;
+}
+
+.user_dashboard_navbar > h2 {
+  margin: 0;
 }
 
 .user_dashboard_tools {
@@ -71,6 +100,7 @@ div {
   flex-direction: column;
   background-color: darkgrey;
   gap: 5px;
+  width: 30%;
 }
 
 .user_dashboard_add_task {
@@ -80,6 +110,7 @@ div {
   flex-direction: column;
   background-color: darkgrey;
   gap: 5px;
+  width: 40%;
 }
 
 .user_dashboard_tasks_container {
@@ -93,6 +124,28 @@ div {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.user_dashboard_tasks_categories > button {
+  transition: all 0.2s ease-in;
+}
+
+.user_dashboard_tasks_categories > button:hover {
+  background-color: darkgrey;
+  color: #212121;
+  border: 3px solid #212121;
+}
+
+.task_category_general_button {
+  border-radius: 5px;
+  border: 3px solid white;
+}
+
+.task_category_selected {
+  border-radius: 5px;
+  background-color: darkgrey;
+  color: #212121;
+  border: 3px solid #212121;
 }
 
 .user_dashboard_tasks_view {
