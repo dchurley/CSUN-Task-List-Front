@@ -148,6 +148,12 @@ h2 {
 .task_category_general_button {
   border-radius: 5px;
   border: 3px solid white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.task_category_general_button > button {
 }
 
 .task_category_selected {
@@ -155,6 +161,12 @@ h2 {
   background-color: darkgrey;
   color: #212121;
   border: 3px solid #212121;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.task_category_selected > button {
 }
 
 .user_dashboard_tasks_view {

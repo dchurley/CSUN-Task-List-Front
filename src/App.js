@@ -349,8 +349,13 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setCategories([...categories, data.addedCategory]);
-        setCategoryToAdd("");
+        if (data.msg) {
+          console.log(data.msg);
+          setCategoryToAdd("");
+        } else {
+          setCategories([...categories, data.addedCategory]);
+          setCategoryToAdd("");
+        }
       });
   };
 
@@ -448,6 +453,32 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     if (!user_id || !access_token) return;
 
     fetch("http://localhost:4000/delete-user-task", {
+      method: "delete",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id,
+        access_token,
+        id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        getUserTasks();
+      });
+  };
+
+  // const checkNumberOfTasksInCategory = (category) => {
+  //   return tasks.filter(
+  //     (task) => task.category === category && task.completed !== true
+  //   ).length;
+  // };
+
+  const deleteCategory = (id) => {
+    let user_id = sessionStorage.getItem("user_id");
+    let access_token = sessionStorage.getItem("access_token");
+    if (!user_id || !access_token) return;
+
+    fetch("http://localhost:4000/delete-user-category", {
       method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
