@@ -467,11 +467,9 @@ const UserDashboard = ({ setIsLoggedIn }) => {
       });
   };
 
-  // const checkNumberOfTasksInCategory = (category) => {
-  //   return tasks.filter(
-  //     (task) => task.category === category && task.completed !== true
-  //   ).length;
-  // };
+  const checkNumberOfTasksInCategory = (category) => {
+    return tasks.filter((task) => task.category === category).length;
+  };
 
   const deleteCategory = (id) => {
     let user_id = sessionStorage.getItem("user_id");
@@ -569,7 +567,12 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                     : "task_category_general_button"
                 }
               >
-                {category.category}
+                <>
+                  {category.category}
+                  {checkNumberOfTasksInCategory(category.category) === 0 ? (
+                    <FaTrashAlt />
+                  ) : null}
+                </>
               </button>
             ))}
           </div>
@@ -587,14 +590,18 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                   <div className="user_dashboard_tasks_view_task_right">
                     <button
                       value={task.id}
-                      onClick={(e) => completeTask(e.target.value)}
+                      onClick={(e) => {
+                        completeTask(e.currentTarget.value);
+                      }}
                       className="container_with_text_icon"
                     >
                       <FaCheck />
                     </button>
                     <button
                       value={task.id}
-                      onClick={(e) => deleteTask(e.target.value)}
+                      onClick={(e) => {
+                        deleteTask(e.currentTarget.value);
+                      }}
                       className="container_with_text_icon"
                     >
                       <FaTrashAlt />
@@ -622,14 +629,14 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                   <div className="user_dashboard_tasks_view_task_completed_buttons">
                     <button
                       value={task.id}
-                      onClick={(e) => unCompleteTask(e.target.value)}
+                      onClick={(e) => unCompleteTask(e.currentTarget.value)}
                       className="container_with_text_icon"
                     >
                       <FaUndo />
                     </button>
                     <button
                       value={task.id}
-                      onClick={(e) => deleteTask(e.target.value)}
+                      onClick={(e) => deleteTask(e.currentTarget.value)}
                       className="container_with_text_icon"
                     >
                       <FaTrashAlt />

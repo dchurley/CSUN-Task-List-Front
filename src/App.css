@@ -150,10 +150,7 @@ h2 {
   border: 3px solid white;
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-
-.task_category_general_button > button {
+  gap: 15px;
 }
 
 .task_category_selected {
@@ -163,10 +160,7 @@ h2 {
   border: 3px solid #212121;
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-
-.task_category_selected > button {
+  gap: 15px;
 }
 
 .user_dashboard_tasks_view {
