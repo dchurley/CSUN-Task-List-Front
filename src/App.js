@@ -488,6 +488,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
       .then((response) => response.json())
       .then((data) => {
         getUserTasks();
+        getUserCategories();
       });
   };
 
@@ -567,14 +568,22 @@ const UserDashboard = ({ setIsLoggedIn }) => {
                     : "task_category_general_button"
                 }
               >
-                <>
-                  {category.category}
-                  {checkNumberOfTasksInCategory(category.category) === 0 ? (
-                    <FaTrashAlt />
-                  ) : null}
-                </>
+                {category.category}
+                {checkNumberOfTasksInCategory(category.category) === 0 ? (
+                  <span
+                    id={category.id}
+                    onClick={(e) => {
+                      deleteCategory(e.currentTarget.id);
+                    }}
+                    className="logo_span"
+                  >
+                    <FaTrashAlt value={category.id} />
+                  </span>
+                ) : null}
               </button>
             ))}
+
+            {/*  */}
           </div>
           {!customeFilter().length ? null : (
             <div className="user_dashboard_tasks_view">

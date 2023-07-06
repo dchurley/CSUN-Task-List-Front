@@ -22,6 +22,14 @@ div {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  transition: all 0.2s ease-in;
+  border: 3px solid white;
+}
+
+.container_with_text_icon:hover {
+  color: #212121;
+  background-color: white;
+  border: 3px solid #212121;
 }
 
 h1 {
@@ -93,6 +101,19 @@ h2 {
   margin: 0;
 }
 
+.user_dashboard_navbar > button {
+  transition: all 0.2s ease-in-out;
+  border: 3px solid white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.user_dashboard_navbar > button:hover {
+  color: #212121;
+  background-color: white;
+  border: 3px solid #212121;
+}
+
 .user_dashboard_tools {
   display: flex;
   align-items: center;
@@ -133,16 +154,30 @@ h2 {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .user_dashboard_tasks_categories > button {
   transition: all 0.2s ease-in;
+  border: 3px solid darkgrey;
+  font-size: 20px;
 }
 
 .user_dashboard_tasks_categories > button:hover {
-  background-color: darkgrey;
-  color: #212121;
   border: 3px solid #212121;
+}
+
+.logo_span {
+  padding: 2px;
+  height: 20px;
+  transition: all 0.2s ease-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo_span:hover {
+  color: red;
 }
 
 .task_category_general_button {
