@@ -9,11 +9,13 @@ import {
   FaCheck,
   FaUndo,
 } from "react-icons/fa";
+const _SERVER_LINK = process.env.REACT_APP_SERVER_LINK;
+
 /*
 eduard.hovhannisyan.461@my.csun.edu
 12345678
-http://localhost:4000/get-all
-http://localhost:4000/truncate-all
+http://localhost:3000/get-all
+http://localhost:3000/truncate-all
 
 */
 
@@ -148,7 +150,7 @@ const SignInSignUp = ({ setIsLoggedIn }) => {
       return;
     }
 
-    fetch("http://localhost:4000/user-register", {
+    fetch(`${_SERVER_LINK}/user-register`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -174,7 +176,7 @@ const SignInSignUp = ({ setIsLoggedIn }) => {
       return;
     }
 
-    fetch("http://localhost:4000/user-login", {
+    fetch(`${_SERVER_LINK}/user-login`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -293,7 +295,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
 
     if (!user_id || !access_token) return;
 
-    fetch("http://localhost:4000/get-user-categories", {
+    fetch(`${_SERVER_LINK}/get-user-categories`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -313,7 +315,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
 
     if (!user_id || !access_token) return;
 
-    fetch("http://localhost:4000/get-user-tasks", {
+    fetch(`${_SERVER_LINK}/get-user-tasks`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -338,7 +340,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     fixedCategoryToAdd =
       fixedCategoryToAdd.charAt(0).toUpperCase() + fixedCategoryToAdd.slice(1);
 
-    fetch("http://localhost:4000/add-user-category", {
+    fetch(`${_SERVER_LINK}/add-user-category`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -371,7 +373,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
 
     if (!fixedTitle || !category) return;
 
-    fetch("http://localhost:4000/add-user-task", {
+    fetch(`${_SERVER_LINK}/add-user-task`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -411,7 +413,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     let access_token = sessionStorage.getItem("access_token");
     if (!user_id || !access_token) return;
 
-    fetch("http://localhost:4000/complete-user-task", {
+    fetch(`${_SERVER_LINK}/complete-user-task`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -432,7 +434,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     let access_token = sessionStorage.getItem("access_token");
     if (!user_id || !access_token) return;
 
-    fetch("http://localhost:4000/uncomplete-user-task", {
+    fetch(`${_SERVER_LINK}/uncomplete-user-task`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -452,7 +454,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     let access_token = sessionStorage.getItem("access_token");
     if (!user_id || !access_token) return;
 
-    fetch("http://localhost:4000/delete-user-task", {
+    fetch(`${_SERVER_LINK}/delete-user-task`, {
       method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -476,7 +478,7 @@ const UserDashboard = ({ setIsLoggedIn }) => {
     let access_token = sessionStorage.getItem("access_token");
     if (!user_id || !access_token) return;
 
-    fetch("http://localhost:4000/delete-user-category", {
+    fetch(`${_SERVER_LINK}/delete-user-category`, {
       method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
